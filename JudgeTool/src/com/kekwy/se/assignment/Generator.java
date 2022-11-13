@@ -1,4 +1,4 @@
-package com.kekwy.se;
+package com.kekwy.se.assignment;
 
 import com.kekwy.se.data.InputType;
 
@@ -6,5 +6,5 @@ import java.net.URL;
 import java.util.List;
 
 public interface Generator {
-    List<URL> generate(List<InputType> inputTypes);
+    URL generate(List<InputType> inputTypes);
 }

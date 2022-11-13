@@ -1,4 +1,4 @@
-package com.kekwy.se;
+package com.kekwy.se.assignment;
 
 import java.net.URL;
 import java.util.List;
