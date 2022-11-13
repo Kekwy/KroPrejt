@@ -1,7 +1,7 @@
 package com.kekwy.se;
 
 import com.kekwy.se.assignment.Generator;
-import com.kekwy.se.assignment.Preprocessor;
+import com.kekwy.se.assignment.Compiler;
 import com.kekwy.se.data.DataStruct;
 import com.kekwy.se.data.IOPort;
 
@@ -24,14 +24,14 @@ public class JudgeToolController {
 
     private Generator generator;
 
-    private final Map<String, Preprocessor> preprocessorMap = new HashMap<>();
+    private final Map<String, Compiler> preprocessorMap = new HashMap<>();
 
     private void setGenerator(Generator generator) {
         this.generator = generator;
     }
 
-    private void addPreprocessor(String programLanguage, Preprocessor preprocessor) {
-        preprocessorMap.put(programLanguage, preprocessor);
+    private void addPreprocessor(String programLanguage, Compiler compiler) {
+        preprocessorMap.put(programLanguage, compiler);
     }
 
     private boolean active = true;
