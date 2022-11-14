@@ -14,6 +14,14 @@ public class JudgeAssignment implements Runnable {
     private static final Map<String, Executor> ExecutorMap = new HashMap<>();
     private static final Map<String, Compiler> compilerMap = new HashMap<>();
 
+    public static void addExecutor(Executor executor, String language) {
+        ExecutorMap.put(language.toLowerCase(Locale.ROOT), executor);
+    }
+
+    public static void addCompiler(Compiler compiler, String language) {
+        compilerMap.put(language.toLowerCase(Locale.ROOT), compiler);
+    }
+
     private final List<File> codeFiles;
 
     private static final Generator generator = new RandomGenerator();
@@ -23,9 +31,10 @@ public class JudgeAssignment implements Runnable {
 
     public JudgeAssignment(List<File> codeFiles, String language, List<InputType> types) {
         this.codeFiles = codeFiles;
-        this.compiler = compilerMap.get(language);
-        this.executor = ExecutorMap.get(language);
-        File dir = new File("./tmp");
+        this.compiler = compilerMap.get(language.toLowerCase(Locale.ROOT));
+        this.executor = ExecutorMap.get(language.toLowerCase(Locale.ROOT));
+        this.types = types;
+        File dir = new File("./tmp/output");
         if(!dir.exists()) {
             if (!dir.mkdir()) {
                 throw new RuntimeException("目录创建失败");
@@ -52,7 +61,7 @@ public class JudgeAssignment implements Runnable {
                 throw new RuntimeException(e);
             }
             // 生成一个临时文件, 用于保存目标进程的输出
-            File tmp = File.createTempFile("judge",".tmp", new File("./tmp"));
+            File tmp = File.createTempFile("judge",".tmp", new File("./tmp/output"));
             BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(tmp));
             String input = reader.readLine();              // 从数据集文件中读出一行
             for (; input != null; input = reader.readLine()) {
@@ -127,9 +136,9 @@ public class JudgeAssignment implements Runnable {
                 bfIs1.close();
                 bfIs2.close();
                 if (isEqual) {
-                    equal.add(new File[]{output1, output2});
+                    equal.add(new File[]{codeFiles.get(i), codeFiles.get(j)});
                 } else {
-                    inequal.add(new File[]{output1, output2});
+                    inequal.add(new File[]{codeFiles.get(i), codeFiles.get(j)});
                 }
 
             }

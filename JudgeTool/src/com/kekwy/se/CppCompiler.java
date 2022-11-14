@@ -22,7 +22,7 @@ public class CppCompiler implements Compiler {
     }
 
     @Override
-    public List<File> compile(List<File> sourceCode) {
+    public List<File> compile(List<File> sourceCode) throws IOException {
         List<File> execFiles = new ArrayList<>();
         for (File file : sourceCode) {
             String sourceName = file.getName();
@@ -32,7 +32,7 @@ public class CppCompiler implements Compiler {
             try {
                 Process process = builder.start();
                 process.waitFor(5, TimeUnit.SECONDS);
-            } catch (IOException | InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             File outFile = new File("./tmp/exec/" + outFileName);

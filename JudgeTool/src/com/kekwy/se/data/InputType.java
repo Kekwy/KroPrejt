@@ -1,15 +1,15 @@
 package com.kekwy.se.data;
 
 public class InputType {
-    public String type;
+    public Type type;
     public Range range;
 
-    public InputType(String type, int begin, int end) {
+    public InputType(Type type, int begin, int end) {
         this.type = type;
         this.range = new Range(begin, end);
     }
 
-    static class Range {
+    public static class Range {
         public int begin;
         public int end;
 
@@ -18,4 +18,10 @@ public class InputType {
             this.end = end;
         }
     }
+
+    public enum Type {
+        TYPE_INT,
+        TYPE_STRING,
+    }
+
 }
