@@ -1,6 +1,7 @@
 import com.kekwy.se.CppCompiler;
 import com.kekwy.se.CppExecutor;
 import com.kekwy.se.JudgeAssignment;
+import com.kekwy.se.assignment.AssignmentManager;
 import com.kekwy.se.data.InputType;
 
 import java.io.*;
@@ -10,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        /*JudgeAssignment.addCompiler(new CppCompiler(), "Cpp");
+        JudgeAssignment.addCompiler(new CppCompiler(), "Cpp");
         JudgeAssignment.addExecutor(new CppExecutor(), "cpp");
 
         InputType[] types = new InputType[2];
@@ -26,12 +27,16 @@ public class Main {
 
         JudgeAssignment judgeAssignment = new JudgeAssignment(codeFiles, "Cpp", inputTypes);
 
-        Thread launch = new Thread(judgeAssignment);
+        AssignmentManager<List<List<File[]>>> manager = new AssignmentManager<>();
 
-        launch.start();
+        new Thread(manager).start();
 
-        launch.join();*/
+        manager.postAssignment(judgeAssignment);
 
+        List<List<File[]>> res = manager.waitForData();
+
+        System.out.println(res.toString());
+/*
         List<Integer> integers = new LinkedList<>();
 
 
@@ -58,6 +63,7 @@ public class Main {
         System.out.println(iterator.next());
 
         System.out.println(iterator.next());
+*/
 
     }
 }

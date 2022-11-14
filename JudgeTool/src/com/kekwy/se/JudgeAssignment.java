@@ -98,7 +98,8 @@ public class JudgeAssignment extends Assignment<List<List<File[]>>> implements R
     /**
      * 等价性判断任务的工作流程
      */
-    protected List<List<File[]>> work() {
+    @Override
+    public List<List<File[]>> work() {
         try {
             File inputFile = generator.generate(types);            // 生成数据集
             List<File> execFiles = compiler.compile(codeFiles);    // 编译源代码

@@ -13,6 +13,10 @@ public class AssignmentManager<T> implements Runnable {
 
     private final ExecutorService exec = Executors.newCachedThreadPool();
 
+    public AssignmentManager() {
+        iterator = assignmentList.listIterator();
+    }
+
     public void postAssignment(Assignment<T> assignment) {
         synchronized (assignmentList) {
             iterator.add(assignment);
