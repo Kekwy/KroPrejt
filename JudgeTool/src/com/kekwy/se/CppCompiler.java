@@ -1,21 +1,28 @@
-import java.io.*;
+package com.kekwy.se;
+
+import com.kekwy.se.assignment.Compiler;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public class Main {
+public class CppCompiler implements Compiler {
+    private final ProcessBuilder builder = new ProcessBuilder();
 
-    public List<File> compile(List<File> sourceCode) {
-        ProcessBuilder builder = new ProcessBuilder();
-        builder.inheritIO();
+    public CppCompiler() {
         File outputPath = new File("./tmp/exec/");
         if(!(outputPath.exists() && outputPath.isDirectory())) {
             if(!outputPath.mkdirs()) {
                 throw new RuntimeException("编译输出路径不存在且创建失败");
             }
         }
+    }
+
+    @Override
+    public List<File> compile(List<File> sourceCode) {
         List<File> execFiles = new ArrayList<>();
         for (File file : sourceCode) {
             String sourceName = file.getName();
@@ -36,25 +43,4 @@ public class Main {
         }
         return execFiles;
     }
-
-    public static void main(String[] args) throws IOException {
-        List<File> list = new ArrayList<>();
-        list.add(new File("/Users/kekwy/Desktop/test.cpp"));
-        list.add(new File("/Users/kekwy/Desktop/test1.cpp"));
-        // new Main().compile(list);
-        BufferedInputStream bfIs1;
-        BufferedInputStream bfIs2;
-        try {
-            bfIs1 = new BufferedInputStream(new FileInputStream(list.get(0)));
-            bfIs2 = new BufferedInputStream(new FileInputStream(list.get(1)));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println(Arrays.equals(bfIs1.readAllBytes(), bfIs2.readAllBytes()));
-        bfIs1.close();
-        bfIs2.close();
-    }
 }
-
-// prejt 

@@ -1,5 +1,8 @@
-package com.kekwy.se.assignment;
+package com.kekwy.se;
 
+import com.kekwy.se.assignment.Compiler;
+import com.kekwy.se.assignment.Executor;
+import com.kekwy.se.assignment.Generator;
 import com.kekwy.se.data.InputType;
 
 import java.io.*;
@@ -8,28 +11,29 @@ import java.util.concurrent.TimeUnit;
 
 public class JudgeAssignment implements Runnable {
 
-    private static final Map<String, List<String>> compilerCmdMap = new HashMap<>();
+    private static final Map<String, Executor> ExecutorMap = new HashMap<>();
     private static final Map<String, Compiler> compilerMap = new HashMap<>();
 
-    private final ProcessBuilder builder = new ProcessBuilder();
+    private final List<File> codeFiles;
 
-    private List<File> codeFiles;
-
-    private Generator generator;
+    private static final Generator generator = new RandomGenerator();
     List<InputType> types;
 
-    String language;
-
-    Compiler compiler;
-
-    List<String> executeCmd;
+    private final Compiler compiler;
 
     public JudgeAssignment(List<File> codeFiles, String language, List<InputType> types) {
-
+        this.codeFiles = codeFiles;
+        this.compiler = compilerMap.get(language);
+        this.executor = ExecutorMap.get(language);
+        File dir = new File("./tmp");
+        if(!dir.exists()) {
+            if (!dir.mkdir()) {
+                throw new RuntimeException("目录创建失败");
+            }
+        }
     }
 
-
-    Executor executor;
+    private final Executor executor;
 
     /**
      * 使用指定的输入数据集测试所有程序，并返回保存每个程序输出的文件列表
@@ -40,7 +44,6 @@ public class JudgeAssignment implements Runnable {
      */
     private List<File> exec(List<File> execFiles, File inputFile) throws IOException {
         List<File> outputFiles = new ArrayList<>();
-
         for (File execFile : execFiles) {
             BufferedReader reader;
             try {
@@ -49,17 +52,11 @@ public class JudgeAssignment implements Runnable {
                 throw new RuntimeException(e);
             }
             // 生成一个临时文件, 用于保存目标进程的输出
-            File dir = new File("./tmp");
-            if(!dir.exists()) {
-                if (!dir.mkdir()) {
-                    throw new RuntimeException("目录创建失败");
-                }
-            }
             File tmp = File.createTempFile("judge",".tmp", new File("./tmp"));
             BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(tmp));
             String input = reader.readLine();              // 从数据集文件中读出一行
             for (; input != null; input = reader.readLine()) {
-                Process process = executor.exce(execFile); // 启动待测程序
+                Process process = executor.exec(execFile); // 启动待测程序
                 BufferedOutputStream bfos = new BufferedOutputStream(process.getOutputStream());
                 bfos.write((input + "\n").getBytes());     // 向目标进程的输入测试用例
                 bfos.flush();
@@ -93,7 +90,7 @@ public class JudgeAssignment implements Runnable {
     }
 
 
-    List<String[]> result;
+    List<List<File[]>> result;
 
     /**
      * 等价性判断任务的工作流程
@@ -109,8 +106,37 @@ public class JudgeAssignment implements Runnable {
         }
     }
 
-    private List<String[]> compare(List<File> outputFiles) {
-        //TODO
-        return null;
+    private List<List<File[]>> compare(List<File> outputFiles) throws IOException {
+        List<File[]> equal = new ArrayList<>();
+        List<File[]> inequal = new ArrayList<>();
+
+        for (int i = 0; i < codeFiles.size(); i++) {
+            File output1 = outputFiles.get(i);
+            for (int j = i + 1; j < codeFiles.size(); j++) {
+                File output2 = outputFiles.get(j);
+                BufferedInputStream bfIs1;
+                BufferedInputStream bfIs2;
+                try {
+                    bfIs1 = new BufferedInputStream(new FileInputStream(output1));
+                    bfIs2 = new BufferedInputStream(new FileInputStream(output2));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+
+                boolean isEqual = Arrays.equals(bfIs1.readAllBytes(), bfIs2.readAllBytes());
+                bfIs1.close();
+                bfIs2.close();
+                if (isEqual) {
+                    equal.add(new File[]{output1, output2});
+                } else {
+                    inequal.add(new File[]{output1, output2});
+                }
+
+            }
+        }
+        List<List<File[]>> res = new ArrayList<>();
+        res.add(equal);
+        res.add(inequal);
+        return res;
     }
 }

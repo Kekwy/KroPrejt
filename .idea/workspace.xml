@@ -6,18 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="TODO: Assignment">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/KroPrejt_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Executor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/kekwy/se/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="Assignment-exec: 11.13 22:43">
+      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppCompiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/RandomGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/JudgeAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/JudgeAssignment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Preprocessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Compiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Executor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/JudgeAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +38,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/JudgeAssignment.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -66,6 +63,11 @@
     "settings.editor.selected.configurable": "preferences.editor"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.kekwy.se" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -89,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668319689463</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Assignment-exec: 11.13 22:43">
+      <created>1668350609917</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668350609917</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -106,7 +115,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="JudgeToolController" />
     <MESSAGE value="TODO: Assignment" />
-    <option name="LAST_COMMIT_MESSAGE" value="TODO: Assignment" />
+    <MESSAGE value="Assignment-exec: 11.13 22:43" />
+    <option name="LAST_COMMIT_MESSAGE" value="Assignment-exec: 11.13 22:43" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
