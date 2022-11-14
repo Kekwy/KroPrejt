@@ -4,15 +4,13 @@ import com.kekwy.se.JudgeAssignment;
 import com.kekwy.se.data.InputType;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        JudgeAssignment.addCompiler(new CppCompiler(), "Cpp");
+        /*JudgeAssignment.addCompiler(new CppCompiler(), "Cpp");
         JudgeAssignment.addExecutor(new CppExecutor(), "cpp");
 
         InputType[] types = new InputType[2];
@@ -32,7 +30,34 @@ public class Main {
 
         launch.start();
 
-        launch.join();
+        launch.join();*/
+
+        List<Integer> integers = new LinkedList<>();
+
+
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+
+        ListIterator<Integer> iterator = integers.listIterator();
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
+
+        iterator.add(4);
+
+        System.out.println(iterator.next());
+
+        iterator = integers.listIterator();
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
 
     }
 }
