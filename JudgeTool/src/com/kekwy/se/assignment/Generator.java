@@ -1,10 +1,10 @@
 package com.kekwy.se.assignment;
 
 import com.kekwy.se.data.InputType;
-
-import java.net.URL;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public interface Generator {
-    URL generate(List<InputType> inputTypes);
+    File generate(List<InputType> inputTypes) throws IOException;
 }
