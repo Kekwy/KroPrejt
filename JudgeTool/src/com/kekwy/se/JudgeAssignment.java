@@ -110,8 +110,20 @@ public class JudgeAssignment implements Runnable {
             List<File> execFiles = compiler.compile(codeFiles);    // 编译源代码
             List<File> outputFiles = exec(execFiles, inputFile);   // 执行程序，保存输出
             result = compare(outputFiles);                         // 对比输出结果，划分等价对
+            removeTempFiles(inputFile, execFiles, outputFiles);    // 删除测试过程中产生的临时文件
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    private void removeTempFiles(File inputFile, List<File> execFiles, List<File> outputFiles) {
+        inputFile.delete();
+        for (File execFile : execFiles) {
+            execFile.delete();
+        }
+        for (File outputFile : outputFiles) {
+            outputFile.delete();
         }
     }
 
