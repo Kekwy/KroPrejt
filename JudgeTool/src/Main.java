@@ -1,12 +1,11 @@
 import com.kekwy.se.CppCompiler;
 import com.kekwy.se.CppExecutor;
 import com.kekwy.se.JudgeAssignment;
+import com.kekwy.se.assignment.AssignmentManager;
 import com.kekwy.se.data.InputType;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -28,11 +27,43 @@ public class Main {
 
         JudgeAssignment judgeAssignment = new JudgeAssignment(codeFiles, "Cpp", inputTypes);
 
-        Thread launch = new Thread(judgeAssignment);
+        AssignmentManager<List<List<File[]>>> manager = new AssignmentManager<>();
 
-        launch.start();
+        new Thread(manager).start();
 
-        launch.join();
+        manager.postAssignment(judgeAssignment);
+
+        List<List<File[]>> res = manager.waitForData();
+
+        System.out.println(res.toString());
+/*
+        List<Integer> integers = new LinkedList<>();
+
+
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+
+        ListIterator<Integer> iterator = integers.listIterator();
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
+
+        iterator.add(4);
+
+        System.out.println(iterator.next());
+
+        iterator = integers.listIterator();
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
+
+        System.out.println(iterator.next());
+*/
 
     }
 }

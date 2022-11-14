@@ -31,7 +31,7 @@ public class CppCompiler implements Compiler {
             builder.command("g++", file.getAbsolutePath(), "-o", "./tmp/exec/" + outFileName);
             try {
                 Process process = builder.start();
-                process.waitFor(5, TimeUnit.SECONDS);
+                process.waitFor(2, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

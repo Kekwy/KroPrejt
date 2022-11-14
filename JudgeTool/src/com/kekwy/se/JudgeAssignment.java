@@ -1,5 +1,6 @@
 package com.kekwy.se;
 
+import com.kekwy.se.assignment.Assignment;
 import com.kekwy.se.assignment.Compiler;
 import com.kekwy.se.assignment.Executor;
 import com.kekwy.se.assignment.Generator;
@@ -9,7 +10,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class JudgeAssignment implements Runnable {
+public class JudgeAssignment extends Assignment<List<List<File[]>>> implements Runnable {
 
     private static final Map<String, Executor> ExecutorMap = new HashMap<>();
     private static final Map<String, Compiler> compilerMap = new HashMap<>();
@@ -72,7 +73,7 @@ public class JudgeAssignment implements Runnable {
                 bfos.close();
                 boolean isTimeout;
                 try {                                      // 等待进程执行结束
-                    isTimeout = !(process.waitFor(5, TimeUnit.SECONDS));
+                    isTimeout = !(process.waitFor(2, TimeUnit.SECONDS));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -92,25 +93,20 @@ public class JudgeAssignment implements Runnable {
         return outputFiles;
     }
 
-    @Override
-    public void run() {
-        work();
-
-    }
-
-
-    List<List<File[]>> result;
+    // List<List<File[]>> result;
 
     /**
      * 等价性判断任务的工作流程
      */
-    private void work() {
+    @Override
+    public List<List<File[]>> work() {
         try {
             File inputFile = generator.generate(types);            // 生成数据集
             List<File> execFiles = compiler.compile(codeFiles);    // 编译源代码
             List<File> outputFiles = exec(execFiles, inputFile);   // 执行程序，保存输出
-            result = compare(outputFiles);                         // 对比输出结果，划分等价对
+            List<List<File[]>> result = compare(outputFiles);      // 对比输出结果，划分等价对
             removeTempFiles(inputFile, execFiles, outputFiles);    // 删除测试过程中产生的临时文件
+            return result;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
