@@ -1,64 +1,38 @@
 package com.kekwy.se;
 
-import com.kekwy.se.assignment.AssignmentManager;
-import com.kekwy.se.data.DataStruct;
-import com.kekwy.se.data.IOPort;
+import com.kekwy.se.assignment.Assignment;
+import com.kekwy.se.assignment.JudgeAssignment;
+import com.kekwy.se.compiler.CCompiler;
+import com.kekwy.se.compiler.CppCompiler;
+import com.kekwy.se.executor.CppExecutor;
 import com.kekwy.se.payload.ProgramPairs;
 import com.kekwy.se.payload.SourceCodeGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JudgeToolController {
-    private static JudgeToolController judgeToolController;
 
-    private JudgeToolController() {
+    static {
+        JudgeAssignment.addCompiler(new CCompiler(), "c");
+        JudgeAssignment.addExecutor(new CppExecutor(), "c");
+        JudgeAssignment.addCompiler(new CppCompiler(), "cpp");
+        JudgeAssignment.addExecutor(new CppExecutor(), "cpp");
     }
-
-    public static JudgeToolController getJudgeToolController() {
-        if (judgeToolController == null) {
-            judgeToolController = new JudgeToolController();
-        }
-        return judgeToolController;
-    }
-
-    private boolean active = true;
-
-    private void send() {
-        while (active) {
-            DataStruct data = assignmentManager.waitForData();
-            ioPort.send(data, null);
-        }
-    }
-
-
-    private void createAssignment(DataStruct data) {
-        if (data.getPayLoad() instanceof SourceCodeGroup group) {
-            JudgeAssignment assignment = new JudgeAssignment(group.getFileList(),
-                    group.getLanguage(), group.getInputType());
-            assignmentManager.postAssignment(assignment);
-        } else {
-            // TODO 进行错误处理
-        }
-    }
-    public final IOPort<DataStruct> ioPort = new IOPort<>();
-
     private final AssignmentManager<ProgramPairs> assignmentManager = new AssignmentManager<>();
 
-    private void receive() {
-        while (active) {
-            DataStruct data = ioPort.get();
-            if(data == null) {
-                active = false;
-                assignmentManager.setActive(false);
-            } else {
-                createAssignment(data);
-            }
+    public void createAssignments(List<SourceCodeGroup> sourceCodeGroups) {
+        List<Assignment<ProgramPairs>> assignmentList = new ArrayList<>();
+        for (SourceCodeGroup sourceCodeGroup : sourceCodeGroups) {
+            assignmentList.add(new JudgeAssignment(sourceCodeGroup.getFileList(),
+                    sourceCodeGroup.getLanguage(), sourceCodeGroup.getInputType()));
         }
-        // TODO 保存数据退出运行
+        assignmentManager.postAssignment(assignmentList);
     }
 
-    public void start() {
-        new Thread(this::send).start();
-        new Thread(this::receive).start();
-        new Thread(assignmentManager).start();
+    public List<ProgramPairs> runAssignments() {
+        assignmentManager.launch();
+        return assignmentManager.waitForData();
     }
 
 }

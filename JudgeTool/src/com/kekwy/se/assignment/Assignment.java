@@ -6,11 +6,6 @@ public abstract class Assignment<T> implements Runnable {
 
     private Thread thread;
 
-    private final UUID uuid = UUID.randomUUID();
-    public UUID getUUID() {
-        return uuid;
-    }
-
     public void setThread(Thread thread) {
         this.thread = thread;
     }
@@ -21,12 +16,6 @@ public abstract class Assignment<T> implements Runnable {
 
     private boolean finished = false;
     private final Object finishedFlag = new Object();
-
-    public boolean isFinished() {
-        synchronized (finishedFlag) {
-            return finished;
-        }
-    }
 
     private T submission;
 
@@ -41,6 +30,19 @@ public abstract class Assignment<T> implements Runnable {
         submission = work();
         synchronized (finishedFlag) {
             finished = true;
+            finishedFlag.notify();
+        }
+    }
+
+    public void waitForFinished() {
+        synchronized (finishedFlag) {
+            if (!finished) {
+                try {
+                    finishedFlag.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }

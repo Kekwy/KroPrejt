@@ -1,6 +1,5 @@
-package com.kekwy.se;
+package com.kekwy.se.assignment;
 
-import com.kekwy.se.assignment.Assignment;
 import com.kekwy.se.compiler.Compiler;
 import com.kekwy.se.executor.Executor;
 import com.kekwy.se.generator.Generator;
@@ -60,6 +59,10 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
     private List<File> exec(List<File> execFiles, File inputFile) throws IOException {
         List<File> outputFiles = new ArrayList<>();
         for (File execFile : execFiles) {
+            if (execFile == null) {
+                outputFiles.add(null);
+                continue;
+            }
             BufferedReader reader;
             try {
                 reader = new BufferedReader(new FileReader(inputFile));
@@ -72,6 +75,14 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
             String input = reader.readLine();              // 从数据集文件中读出一行
             for (; input != null; input = reader.readLine()) {
                 Process process = executor.exec(execFile); // 启动待测程序
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if (!process.isAlive()) {
+                    continue;
+                }
                 BufferedOutputStream bfos = new BufferedOutputStream(process.getOutputStream());
                 bfos.write((input + "\n").getBytes());     // 向目标进程的输入测试用例
                 bfos.flush();
@@ -122,9 +133,15 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
     private void removeTempFiles(File inputFile, List<File> execFiles, List<File> outputFiles) {
         inputFile.delete();
         for (File execFile : execFiles) {
+            if (execFile == null) {
+                continue;
+            }
             execFile.delete();
         }
         for (File outputFile : outputFiles) {
+            if (outputFile == null) {
+                continue;
+            }
             outputFile.delete();
         }
     }
@@ -134,8 +151,14 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
 
         for (int i = 0; i < codeFiles.size(); i++) {
             File output1 = outputFiles.get(i);
+            if (output1 == null) {
+                continue;
+            }
             for (int j = i + 1; j < codeFiles.size(); j++) {
                 File output2 = outputFiles.get(j);
+                if (output2 == null) {
+                    continue;
+                }
                 BufferedInputStream bfIs1;
                 BufferedInputStream bfIs2;
                 try {
