@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/JudgeTool_jar</output-path>
     <root id="archive" name="JudgeTool.jar">
       <element id="module-output" name="JudgeTool" />
+      <element id="module-output" name="KroPrejt" />
     </root>
   </artifact>
 </component>
