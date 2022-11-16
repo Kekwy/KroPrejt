@@ -1,8 +1,15 @@
 package com.kekwy.se.assignment;
 
+import java.util.UUID;
+
 public abstract class Assignment<T> implements Runnable {
 
     private Thread thread;
+
+    private final UUID uuid = UUID.randomUUID();
+    public UUID getUUID() {
+        return uuid;
+    }
 
     public void setThread(Thread thread) {
         this.thread = thread;

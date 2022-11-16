@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProgramPairs {
+public class ProgramPairs implements Loadable {
 
 
     private final List<ProgramPair> equalPairs = new ArrayList<>();

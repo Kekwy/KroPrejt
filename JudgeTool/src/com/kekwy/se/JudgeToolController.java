@@ -3,6 +3,7 @@ package com.kekwy.se;
 import com.kekwy.se.assignment.AssignmentManager;
 import com.kekwy.se.data.DataStruct;
 import com.kekwy.se.data.IOPort;
+import com.kekwy.se.data.ProgramPairs;
 import com.kekwy.se.data.SourceCodeGroup;
 
 import java.io.File;
@@ -26,13 +27,18 @@ public class JudgeToolController {
     private void send() {
         while (active) {
             assignmentManager.waitForData();
+            // uuidDataStructMap.put(assignment.getUUID(), data);
         }
     }
+
+
+    private final Map<UUID, DataStruct> uuidDataStructMap = new HashMap<>();
 
     private void createAssignment(DataStruct data) {
         if (data.getPayLoad() instanceof SourceCodeGroup group) {
             JudgeAssignment assignment = new JudgeAssignment(group.getFileList(),
                     group.getLanguage(), group.getInputType());
+            uuidDataStructMap.put(assignment.getUUID(), data);
             assignmentManager.postAssignment(assignment);
         } else {
             // TODO 进行错误处理
@@ -40,7 +46,7 @@ public class JudgeToolController {
     }
     public final IOPort<DataStruct> ioPort = new IOPort<>();
 
-    private final AssignmentManager<List<List<File[]>>> assignmentManager = new AssignmentManager<>();
+    private final AssignmentManager<ProgramPairs> assignmentManager = new AssignmentManager<>();
 
     private void receive() {
         while (active) {

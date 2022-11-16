@@ -5,12 +5,13 @@ import com.kekwy.se.assignment.Compiler;
 import com.kekwy.se.assignment.Executor;
 import com.kekwy.se.assignment.Generator;
 import com.kekwy.se.data.InputType;
+import com.kekwy.se.data.ProgramPairs;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class JudgeAssignment extends Assignment<List<List<File[]>>> implements Runnable {
+public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnable {
 
     private static final Map<String, Executor> ExecutorMap = new HashMap<>();
     private static final Map<String, Compiler> compilerMap = new HashMap<>();
@@ -99,12 +100,12 @@ public class JudgeAssignment extends Assignment<List<List<File[]>>> implements R
      * 等价性判断任务的工作流程
      */
     @Override
-    public List<List<File[]>> work() {
+    public ProgramPairs work() {
         try {
             File inputFile = generator.generate(types);            // 生成数据集
             List<File> execFiles = compiler.compile(codeFiles);    // 编译源代码
             List<File> outputFiles = exec(execFiles, inputFile);   // 执行程序，保存输出
-            List<List<File[]>> result = compare(outputFiles);      // 对比输出结果，划分等价对
+            ProgramPairs result = compare(outputFiles);      // 对比输出结果，划分等价对
             removeTempFiles(inputFile, execFiles, outputFiles);    // 删除测试过程中产生的临时文件
             return result;                                         // 返回执行结果
         } catch (IOException e) {
@@ -123,9 +124,8 @@ public class JudgeAssignment extends Assignment<List<List<File[]>>> implements R
         }
     }
 
-    private List<List<File[]>> compare(List<File> outputFiles) throws IOException {
-        List<File[]> equal = new ArrayList<>();
-        List<File[]> inequal = new ArrayList<>();
+    private ProgramPairs compare(List<File> outputFiles) throws IOException {
+        ProgramPairs programPairs = new ProgramPairs();
 
         for (int i = 0; i < codeFiles.size(); i++) {
             File output1 = outputFiles.get(i);
@@ -144,16 +144,13 @@ public class JudgeAssignment extends Assignment<List<List<File[]>>> implements R
                 bfIs1.close();
                 bfIs2.close();
                 if (isEqual) {
-                    equal.add(new File[]{codeFiles.get(i), codeFiles.get(j)});
+                    programPairs.addEqualPair(codeFiles.get(i), codeFiles.get(j));
                 } else {
-                    inequal.add(new File[]{codeFiles.get(i), codeFiles.get(j)});
+                    programPairs.addInequalPair(codeFiles.get(i), codeFiles.get(j));
                 }
 
             }
         }
-        List<List<File[]>> res = new ArrayList<>();
-        res.add(equal);
-        res.add(inequal);
-        return res;
+        return programPairs;
     }
 }

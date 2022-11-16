@@ -1,18 +1,21 @@
 package com.kekwy.se.data;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.UUID;
 
-@SuppressWarnings("rawtypes")
 public class DataStruct {
 
-    private final List<IOPort> nextSteps = new LinkedList<>();
+    private final UUID REQUEST_UUID = UUID.randomUUID();
+    // private final List<IOPort> nextSteps = new LinkedList<>();
+
+    public UUID getUUID() {
+        return REQUEST_UUID;
+    }
 
     private Loadable payLoad;
 
-    public IOPort getNextStep() {
+    /*public IOPort getNextStep() {
         return nextSteps.remove(0);
-    }
+    }*/
 
     public Loadable getPayLoad() {
         return payLoad;

@@ -27,15 +27,15 @@ public class Main {
 
         JudgeAssignment judgeAssignment = new JudgeAssignment(codeFiles, "Cpp", inputTypes);
 
-        AssignmentManager<List<List<File[]>>> manager = new AssignmentManager<>();
+        /*AssignmentManager<List<List<File[]>>> manager = new AssignmentManager<>();
 
         new Thread(manager).start();
 
-        manager.postAssignment(judgeAssignment);
+        manager.postAssignment(judgeAssignment);*/
 
-        List<List<File[]>> res = manager.waitForData();
+        // List<List<File[]>> res = manager.waitForData();
 
-        System.out.println(res.toString());
+        // System.out.println(res.toString());
 /*
         List<Integer> integers = new LinkedList<>();
 

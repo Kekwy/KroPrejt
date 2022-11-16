@@ -7,17 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="feat: DataStruct, 程序内部进行数据交互的载体&#10;&#10;DataStruct中包含当前数据包的处理序列（需要依次发送给哪些模块）、附加命令（MySQL）以及当前负载的有效数据。所有期望载入DataStruct的数据对象，都必须实现接口PayLoad。">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/___.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/___1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/在变基之前未提交的更改_[变更]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/在变基之前未提交的更改_[变更]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/ProgramPairs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/SourceCodeGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/kekwy/se/data/Loadable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/ProgramPairs.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/ProgramPairs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kekwy/se/assignment/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kekwy/se/assignment/Assignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kekwy/se/data/DataStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kekwy/se/data/DataStruct.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668424500118</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: DataStruct, 程序内部进行数据交互的载体&#10;&#10;DataStruct中包含当前数据包的处理序列（需要依次发送给哪些模块）、附加命令（MySQL）以及当前负载的有效数据。所有期望载入DataStruct的数据对象，都必须实现接口PayLoad。">
+      <created>1668566117036</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668566117036</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
