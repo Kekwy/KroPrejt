@@ -6,17 +6,14 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="refactor: 调整项目结构，精简项目功能。">
-      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/CCompiler.java" afterDir="false" />
+    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="feat: 从指定目录中读取待测文件">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/AssignmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/AssignmentManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/IOController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/IOController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Assignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/JudgeAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/JudgeAssignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/CppCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/CppCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/SourceCodeGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/SourceCodeGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/ProgramPairs.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/ProgramPairs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KroPrejt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/KroPrejt.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,18 +64,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;16&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "16",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.kekwy.se" />
@@ -186,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668616638657</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: 从指定目录中读取待测文件">
+      <created>1668621861543</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1668621861543</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,7 +245,8 @@
     <MESSAGE value="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成" />
     <MESSAGE value="refactor: 调整项目结构，删除MainController" />
     <MESSAGE value="refactor: 调整项目结构，精简项目功能。" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: 调整项目结构，精简项目功能。" />
+    <MESSAGE value="feat: 从指定目录中读取待测文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 从指定目录中读取待测文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -248,7 +254,7 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/Main.java</url>
           <line>29</line>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

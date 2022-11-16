@@ -8,6 +8,32 @@ import java.util.List;
  * 等价与不等价的程序对组，等价性判断任务的输出结果
  */
 public class ProgramPairs {
+
+    public String getEqualPairsString() {
+        return pairsToString(equalPairs);
+    }
+
+    private String pairsToString(List<ProgramPair> pairList) {
+        StringBuilder res = new StringBuilder();
+        for (ProgramPair pair : pairList) {
+            String absolutePath1 = pair.file1.getParent().substring(
+                    pair.file1.getParent().lastIndexOf("/") + 1) +
+                    "/" + pair.file1.getName();
+            String absolutePath2 = pair.file2.getParent().substring(
+                    pair.file2.getParent().lastIndexOf("/") + 1) +
+                    "/" + pair.file2.getName();
+            res.append(absolutePath1).
+                    append(",").
+                    append(absolutePath2).
+                    append("\n");
+        }
+        return res.toString();
+    }
+
+    public String getInequalPairsString() {
+        return pairsToString(inequalPairs);
+    }
+
     private final List<ProgramPair> equalPairs = new ArrayList<>();
     private final List<ProgramPair> inequalPairs = new ArrayList<>();
 

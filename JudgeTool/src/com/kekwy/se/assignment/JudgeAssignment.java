@@ -75,6 +75,14 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
             String input = reader.readLine();              // 从数据集文件中读出一行
             for (; input != null; input = reader.readLine()) {
                 Process process = executor.exec(execFile); // 启动待测程序
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if (!process.isAlive()) {
+                    continue;
+                }
                 BufferedOutputStream bfos = new BufferedOutputStream(process.getOutputStream());
                 bfos.write((input + "\n").getBytes());     // 向目标进程的输入测试用例
                 bfos.flush();

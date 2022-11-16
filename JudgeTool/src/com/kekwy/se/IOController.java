@@ -3,7 +3,10 @@ package com.kekwy.se;
 import com.kekwy.se.payload.ProgramPairs;
 import com.kekwy.se.payload.SourceCodeGroup;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +42,9 @@ public class IOController {
                     if (language == null) {
                         String name = file.getName();
                         switch (name.substring(name.lastIndexOf('.') + 1)) {
-                            case "c"    -> language = "c";
-                            case "cpp"  -> language = "cpp";
-                            case "py"   -> language = "python";
+                            case "c" -> language = "c";
+                            case "cpp" -> language = "cpp";
+                            case "py" -> language = "python";
                             case "java" -> language = "java";
                             default -> throw new RuntimeException("尚未支持的语言");
                         }
@@ -58,6 +61,32 @@ public class IOController {
     }
 
     public void toCSVFiles(List<ProgramPairs> programPairsList) {
-
+        File dir = new File("./output/");
+        if (!dir.exists()) {
+            if(!dir.mkdirs()) {
+                throw new RuntimeException("");
+            }
+        }
+        File equalPair = new File("./output/" + "equal.csv");
+        File inequalPair = new File("./output/" + "inequal.csv");
+        try {
+            if (!equalPair.exists() && !inequalPair.exists()) {
+                if (!equalPair.createNewFile() || !inequalPair.createNewFile()) {
+                    throw new RuntimeException("文件创建失败");
+                }
+            }
+            BufferedWriter bfWt1 = new BufferedWriter(new FileWriter(equalPair));
+            BufferedWriter bfWt2 = new BufferedWriter(new FileWriter(inequalPair));
+            bfWt1.write("file1,file2\n");
+            bfWt2.write("file1,file2\n");
+            for (ProgramPairs programPairs : programPairsList) {
+                bfWt1.write(programPairs.getEqualPairsString());
+                bfWt2.write(programPairs.getInequalPairsString());
+            }
+            bfWt1.close();
+            bfWt2.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
