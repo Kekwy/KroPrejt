@@ -38,7 +38,7 @@ public class Main {
         JudgeToolController judgeTool = JudgeToolController.getJudgeToolController();
         judgeTool.start();
 
-        judgeTool.ioPort.post(data);
+        // judgeTool.ioPort.post(data);
 
         /*AssignmentManager<List<List<File[]>>> manager = new AssignmentManager<>();
 

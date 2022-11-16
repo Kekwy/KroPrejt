@@ -25,7 +25,7 @@ public class IOPort<T> {
         nextStep.post(dataStruct);
     }
 
-    public void post(T data) {
+    private void post(T data) {
         synchronized (receiveBuffer) {
             receiveBuffer.add(data);
             receiveBuffer.notify();

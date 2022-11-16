@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JudgeTool/JudgeTool.iml" filepath="$PROJECT_DIR$/JudgeTool/JudgeTool.iml" />
       <module fileurl="file://$PROJECT_DIR$/KroPrejt.iml" filepath="$PROJECT_DIR$/KroPrejt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MainController/MainController.iml" filepath="$PROJECT_DIR$/MainController/MainController.iml" />
     </modules>
   </component>
 </project>

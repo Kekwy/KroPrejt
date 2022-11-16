@@ -5,6 +5,7 @@ import com.kekwy.se.data.DataStruct;
 import com.kekwy.se.data.IOPort;
 import com.kekwy.se.payload.ProgramPairs;
 import com.kekwy.se.payload.SourceCodeGroup;
+import com.sun.tools.javac.Main;
 
 public class JudgeToolController {
     private static JudgeToolController judgeToolController;
@@ -24,10 +25,9 @@ public class JudgeToolController {
     private void send() {
         while (active) {
             DataStruct data = assignmentManager.waitForData();
-            ioPort.send(data, null);
+            ioPort.send(data, MainController.getMainController().ioPort);
         }
     }
-
 
     private void createAssignment(DataStruct data) {
         if (data.getPayLoad() instanceof SourceCodeGroup group) {

@@ -17,9 +17,19 @@ public class DataStruct {
 
     private final Loadable payLoad;
 
+    private String extra;
+
     /*public IOPort getNextStep() {
         return nextSteps.remove(0);
     }*/
+
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
+    }
 
     public Loadable getPayLoad() {
         return payLoad;
