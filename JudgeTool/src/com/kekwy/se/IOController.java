@@ -36,6 +36,9 @@ public class IOController {
             File stdInFormat = null;
             String language = null;
             for (File file : files) {
+                if (file.isHidden()) {
+                    continue;
+                }
                 if (file.getName().equals("stdin_format.txt")) {
                     stdInFormat = file;
                 } else {
