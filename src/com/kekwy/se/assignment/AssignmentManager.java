@@ -1,13 +1,16 @@
 package com.kekwy.se.assignment;
 
+import com.kekwy.se.data.DataStruct;
+import com.kekwy.se.data.Loadable;
+
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class AssignmentManager<T> implements Runnable {
+public class AssignmentManager<T extends Loadable> implements Runnable {
 
     private final List<Assignment<T>> assignmentList = new LinkedList<>();
-    private final List<T> submissions = new LinkedList<>();
+    private final List<DataStruct> submissions = new LinkedList<>();
 
     private ListIterator<Assignment<T>> iterator;
 
@@ -32,8 +35,7 @@ public class AssignmentManager<T> implements Runnable {
         exec.shutdown();
     }
 
-    public T waitForData() {
-        T data;
+    public DataStruct waitForData() {
         synchronized (submissions) {
             if (submissions.isEmpty()) {
                 try {
@@ -42,9 +44,9 @@ public class AssignmentManager<T> implements Runnable {
                     throw new RuntimeException(e);
                 }
             }
-            data = submissions.remove(0);
+            return submissions.remove(0);
         }
-        return data;
+        // return new DataStruct(submission.uuid, submission.data);
     }
 
     private boolean active = true;
@@ -73,7 +75,8 @@ public class AssignmentManager<T> implements Runnable {
                         iterator.remove();
                     }
                     synchronized (submissions) {
-                        submissions.add(currentAssignment.getSubmission());
+                        submissions.add(new DataStruct(currentAssignment.getUUID(),
+                                currentAssignment.getResult()));
                         submissions.notify();
                     }
                 }

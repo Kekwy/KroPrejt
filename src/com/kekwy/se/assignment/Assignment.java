@@ -30,7 +30,7 @@ public abstract class Assignment<T> implements Runnable {
 
     private T submission;
 
-    public T getSubmission() {
+    public T getResult() {
         return submission;
     }
 

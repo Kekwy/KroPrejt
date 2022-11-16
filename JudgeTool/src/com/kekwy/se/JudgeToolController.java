@@ -26,8 +26,10 @@ public class JudgeToolController {
 
     private void send() {
         while (active) {
-            assignmentManager.waitForData();
+            DataStruct data = assignmentManager.waitForData();
             // uuidDataStructMap.put(assignment.getUUID(), data);
+            // DataStruct dataStruct = new DataStruct();
+            ioPort.send(data, null);
         }
     }
 
