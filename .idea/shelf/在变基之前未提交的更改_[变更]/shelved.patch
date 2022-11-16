@@ -1,0 +1,47 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -6,8 +6,11 @@
+     </artifacts-to-build>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="refactor: 定义Assignment基类，调整继承关系&#10;&#10;定义Assignment泛型虚类，使JudgeAssignment继承该类并实例化其参数，同时将work方法作为Assignment类中虚方法的重写。">
++    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="feat: DataStruct, 程序内部进行数据交互的载体&#10;&#10;DataStruct中包含当前数据包的处理序列（需要依次发送给哪些模块）、附加命令（MySQL）以及当前负载的有效数据。所有期望载入DataStruct的数据对象，都必须实现接口PayLoad。">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/com/kekwy/se/data/DataStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kekwy/se/data/DataStruct.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -135,7 +138,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1668565109627</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL-00009" summary="feat: DataStruct, 程序内部进行数据交互的载体&#10;&#10;DataStruct中包含当前数据包的处理序列（需要依次发送给哪些模块）、附加命令（MySQL）以及当前负载的有效数据。所有期望载入DataStruct的数据对象，都必须实现接口PayLoad。">
++      <created>1668565333897</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1668565333897</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -156,7 +166,8 @@
+     <MESSAGE value="Assignment-compare: 11.14 10:48" />
+     <MESSAGE value="feat: 临时文件删除&#10;&#10;JudgeAssignment中新增文件删除功能，可以自动删除测试过程中产生的数据集、可执行文件、程序输出结果等临时文件。" />
+     <MESSAGE value="refactor: 定义Assignment基类，调整继承关系&#10;&#10;定义Assignment泛型虚类，使JudgeAssignment继承该类并实例化其参数，同时将work方法作为Assignment类中虚方法的重写。" />
+-    <option name="LAST_COMMIT_MESSAGE" value="refactor: 定义Assignment基类，调整继承关系&#10;&#10;定义Assignment泛型虚类，使JudgeAssignment继承该类并实例化其参数，同时将work方法作为Assignment类中虚方法的重写。" />
++    <MESSAGE value="feat: DataStruct, 程序内部进行数据交互的载体&#10;&#10;DataStruct中包含当前数据包的处理序列（需要依次发送给哪些模块）、附加命令（MySQL）以及当前负载的有效数据。所有期望载入DataStruct的数据对象，都必须实现接口PayLoad。" />
++    <option name="LAST_COMMIT_MESSAGE" value="feat: DataStruct, 程序内部进行数据交互的载体&#10;&#10;DataStruct中包含当前数据包的处理序列（需要依次发送给哪些模块）、附加命令（MySQL）以及当前负载的有效数据。所有期望载入DataStruct的数据对象，都必须实现接口PayLoad。" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>

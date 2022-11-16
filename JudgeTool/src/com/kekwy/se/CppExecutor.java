@@ -10,12 +10,9 @@ public class CppExecutor implements Executor {
     private final ProcessBuilder builder = new ProcessBuilder();
     @Override
     public Process exec(File execFile) throws IOException {
-
         builder.command(execFile.getAbsolutePath());
         builder.redirectInput(ProcessBuilder.Redirect.PIPE);
         builder.redirectOutput(ProcessBuilder.Redirect.PIPE);
-        Process process;
-        process = builder.start();
-        return process;
+        return builder.start();
     }
 }

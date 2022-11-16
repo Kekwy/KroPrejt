@@ -106,7 +106,7 @@ public class JudgeAssignment extends Assignment<List<List<File[]>>> implements R
             List<File> outputFiles = exec(execFiles, inputFile);   // 执行程序，保存输出
             List<List<File[]>> result = compare(outputFiles);      // 对比输出结果，划分等价对
             removeTempFiles(inputFile, execFiles, outputFiles);    // 删除测试过程中产生的临时文件
-            return result;
+            return result;                                         // 返回执行结果
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
