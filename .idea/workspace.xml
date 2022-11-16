@@ -6,12 +6,22 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="refactor: 调整 AssignmentManager 呈递任务结果的形式&#10;&#10;AssignmentManager 接收的泛型参数T必须实现 Loadable，在呈递任务执行结果前，将任务UUID和执行结果打包为DataStruct。">
+    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成">
+      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/PythonCompiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/CppCompiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/executor/CppExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/SourceCodeGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/SourceCodeGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kekwy/se/data/IOPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kekwy/se/data/IOPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/RandomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/RandomGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/Compiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/executor/Executor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/InputType.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/InputInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/ProgramPairs.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/ProgramPairs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/SourceCodeGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/SourceCodeGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kekwy/se/data/Loadable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kekwy/se/data/Loadable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +55,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/Compiler.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/executor/Executor.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/Generator.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/RandomGenerator.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/SourceCodeGroup.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -146,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668568998839</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成">
+      <created>1668573171867</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668573171867</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,23 +192,8 @@
     <MESSAGE value="feat: DataStruct, 程序内部进行数据交互的载体&#10;&#10;DataStruct中包含当前数据包的处理序列（需要依次发送给哪些模块）、附加命令（MySQL）以及当前负载的有效数据。所有期望载入DataStruct的数据对象，都必须实现接口PayLoad。" />
     <MESSAGE value="refactor: 删除DataStruct中&quot;处理序列&quot;一项&#10;&#10;DataStruct不再保存当前数据包对应的处理序列，转而将其保存在未来将实现的中央控制模块的数据结构中。在DataStruct添加UUID项，用于在中央控制模块中检索与之对应的处理序列。" />
     <MESSAGE value="refactor: 调整 AssignmentManager 呈递任务结果的形式&#10;&#10;AssignmentManager 接收的泛型参数T必须实现 Loadable，在呈递任务执行结果前，将任务UUID和执行结果打包为DataStruct。" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: 调整 AssignmentManager 呈递任务结果的形式&#10;&#10;AssignmentManager 接收的泛型参数T必须实现 Loadable，在呈递任务执行结果前，将任务UUID和执行结果打包为DataStruct。" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/kekwy/se/assignment/AssignmentManager.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

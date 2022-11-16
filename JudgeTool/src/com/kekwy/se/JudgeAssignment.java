@@ -1,11 +1,12 @@
 package com.kekwy.se;
 
 import com.kekwy.se.assignment.Assignment;
-import com.kekwy.se.assignment.Compiler;
-import com.kekwy.se.assignment.Executor;
-import com.kekwy.se.assignment.Generator;
-import com.kekwy.se.data.InputType;
-import com.kekwy.se.data.ProgramPairs;
+import com.kekwy.se.compiler.Compiler;
+import com.kekwy.se.executor.Executor;
+import com.kekwy.se.generator.Generator;
+import com.kekwy.se.generator.RandomGenerator;
+import com.kekwy.se.payload.InputInfo;
+import com.kekwy.se.payload.ProgramPairs;
 
 import java.io.*;
 import java.util.*;
@@ -24,27 +25,30 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
         compilerMap.put(language.toLowerCase(Locale.ROOT), compiler);
     }
 
+    private static Generator generator = new RandomGenerator();
+
+    public static void setGenerator(Generator generator) {
+        JudgeAssignment.generator = generator;
+    }
+
     private final List<File> codeFiles;
-
-    private static final Generator generator = new RandomGenerator();
-    List<InputType> types;
-
     private final Compiler compiler;
+    private final Executor executor;
+    private final List<InputInfo> types;
 
-    public JudgeAssignment(List<File> codeFiles, String language, List<InputType> types) {
+
+    public JudgeAssignment(List<File> codeFiles, String language, List<InputInfo> types) {
         this.codeFiles = codeFiles;
         this.compiler = compilerMap.get(language.toLowerCase(Locale.ROOT));
         this.executor = ExecutorMap.get(language.toLowerCase(Locale.ROOT));
         this.types = types;
-        File dir = new File("./tmp/output");
+        File dir = new File("./tmp/output/");
         if(!dir.exists()) {
             if (!dir.mkdir()) {
                 throw new RuntimeException("目录创建失败");
             }
         }
     }
-
-    private final Executor executor;
 
     /**
      * 使用指定的输入数据集测试所有程序，并返回保存每个程序输出的文件列表
@@ -94,8 +98,6 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
         return outputFiles;
     }
 
-    // List<List<File[]>> result;
-
     /**
      * 等价性判断任务的工作流程
      */
@@ -105,7 +107,7 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
             File inputFile = generator.generate(types);            // 生成数据集
             List<File> execFiles = compiler.compile(codeFiles);    // 编译源代码
             List<File> outputFiles = exec(execFiles, inputFile);   // 执行程序，保存输出
-            ProgramPairs result = compare(outputFiles);      // 对比输出结果，划分等价对
+            ProgramPairs result = compare(outputFiles);            // 对比输出结果，划分等价对
             removeTempFiles(inputFile, execFiles, outputFiles);    // 删除测试过程中产生的临时文件
             return result;                                         // 返回执行结果
         } catch (IOException e) {
@@ -113,6 +115,9 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
         }
     }
 
+    /**
+     * 移除测试过程中动态生成的临时文件
+     */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private void removeTempFiles(File inputFile, List<File> execFiles, List<File> outputFiles) {
         inputFile.delete();

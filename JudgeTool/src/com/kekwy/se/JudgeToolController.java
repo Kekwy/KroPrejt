@@ -3,10 +3,8 @@ package com.kekwy.se;
 import com.kekwy.se.assignment.AssignmentManager;
 import com.kekwy.se.data.DataStruct;
 import com.kekwy.se.data.IOPort;
-import com.kekwy.se.data.ProgramPairs;
-import com.kekwy.se.data.SourceCodeGroup;
-
-import java.util.*;
+import com.kekwy.se.payload.ProgramPairs;
+import com.kekwy.se.payload.SourceCodeGroup;
 
 public class JudgeToolController {
     private static JudgeToolController judgeToolController;
@@ -31,13 +29,10 @@ public class JudgeToolController {
     }
 
 
-    private final Map<UUID, DataStruct> uuidDataStructMap = new HashMap<>();
-
     private void createAssignment(DataStruct data) {
         if (data.getPayLoad() instanceof SourceCodeGroup group) {
             JudgeAssignment assignment = new JudgeAssignment(group.getFileList(),
                     group.getLanguage(), group.getInputType());
-            uuidDataStructMap.put(assignment.getUUID(), data);
             assignmentManager.postAssignment(assignment);
         } else {
             // TODO 进行错误处理
