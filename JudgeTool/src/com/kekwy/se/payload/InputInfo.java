@@ -7,7 +7,7 @@ import java.util.Locale;
  */
 public class InputInfo {
     public String type;           // 类型
-    public Range range;         // 范围
+    public Range range;           // 范围
 
     public InputInfo(String type, int begin, int end) {
         this.type = type.toUpperCase(Locale.ROOT);

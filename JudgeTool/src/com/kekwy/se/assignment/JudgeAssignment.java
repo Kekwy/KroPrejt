@@ -1,6 +1,5 @@
-package com.kekwy.se;
+package com.kekwy.se.assignment;
 
-import com.kekwy.se.assignment.Assignment;
 import com.kekwy.se.compiler.Compiler;
 import com.kekwy.se.executor.Executor;
 import com.kekwy.se.generator.Generator;

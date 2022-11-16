@@ -1,7 +1,5 @@
 package com.kekwy.se.payload;
 
-import com.kekwy.se.data.Loadable;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * 待测程序的组，作为判断工具的输入
  */
-public class SourceCodeGroup implements Loadable {
+public class SourceCodeGroup {
     private final List<File> fileList;                                // 源代码文件
     private final String language;                                    // 源代码语言
     private final List<InputInfo> inputInfoList = new ArrayList<>();  // 输入信息列表
@@ -41,18 +39,6 @@ public class SourceCodeGroup implements Loadable {
     }
 
     /**
-     * 从用户输入字符串中读取输入信息
-     * @param fileList 待测程序源码的列表
-     * @param language 待测程序源码的语言
-     * @param inputInfo 用户输入的表示待测程序输入的字符串
-     */
-    public SourceCodeGroup(List<File> fileList, String language, String inputInfo) {
-        this.fileList = fileList;
-        this.language = language;
-        readInputInfo(inputInfo);
-    }
-
-    /**
      * 使用正则表达式解析输入信息
      */
     void readInputInfo(String inputInfo) {
@@ -68,7 +54,7 @@ public class SourceCodeGroup implements Loadable {
                 System.out.println(matcher.group(2));
                 System.out.println(matcher.group(3));*/
             } else {
-                // TODO 提示用户/管理员格式有误
+                // TODO 提示用户格式有误
             }
         }
     }
