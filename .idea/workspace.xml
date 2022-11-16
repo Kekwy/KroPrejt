@@ -6,23 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成">
-      <change afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/PythonCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/CppCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/CppExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/executor/CppExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeAssignment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/RandomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/RandomGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/compiler/Compiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/executor/Executor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/assignment/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/InputType.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/InputInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/ProgramPairs.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/ProgramPairs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/data/SourceCodeGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/SourceCodeGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kekwy/se/data/Loadable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kekwy/se/data/Loadable.java" afterDir="false" />
-    </list>
+    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="feat: MainController" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668573171867</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: LocalServer">
+      <created>1668610828354</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668610828354</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -193,7 +184,8 @@
     <MESSAGE value="refactor: 删除DataStruct中&quot;处理序列&quot;一项&#10;&#10;DataStruct不再保存当前数据包对应的处理序列，转而将其保存在未来将实现的中央控制模块的数据结构中。在DataStruct添加UUID项，用于在中央控制模块中检索与之对应的处理序列。" />
     <MESSAGE value="refactor: 调整 AssignmentManager 呈递任务结果的形式&#10;&#10;AssignmentManager 接收的泛型参数T必须实现 Loadable，在呈递任务执行结果前，将任务UUID和执行结果打包为DataStruct。" />
     <MESSAGE value="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 实现 JudgeToolController 并完成基本样例测试&#10;&#10;JudgeTool 模块基本功能开发完成" />
+    <MESSAGE value="feat: MainController" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: MainController" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
