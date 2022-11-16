@@ -28,8 +28,8 @@ public class IOPort<T> {
     public void post(T data) {
         synchronized (receiveBuffer) {
             receiveBuffer.add(data);
+            receiveBuffer.notify();
         }
-        receiveBuffer.notify();
     }
 
 }

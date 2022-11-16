@@ -1,8 +1,11 @@
 import com.kekwy.se.CppCompiler;
 import com.kekwy.se.CppExecutor;
 import com.kekwy.se.JudgeAssignment;
+import com.kekwy.se.JudgeToolController;
 import com.kekwy.se.assignment.AssignmentManager;
+import com.kekwy.se.data.DataStruct;
 import com.kekwy.se.data.InputType;
+import com.kekwy.se.data.SourceCodeGroup;
 
 import java.io.*;
 import java.util.*;
@@ -25,7 +28,15 @@ public class Main {
         files[2] = new File("/Users/kekwy/Desktop/test3.cpp");
         List<File> codeFiles = new ArrayList<>(Arrays.stream(files).toList());
 
-        JudgeAssignment judgeAssignment = new JudgeAssignment(codeFiles, "Cpp", inputTypes);
+        // JudgeAssignment judgeAssignment = new JudgeAssignment(codeFiles, "Cpp", inputTypes);
+
+        DataStruct data = new DataStruct(UUID.randomUUID(),
+                new SourceCodeGroup(codeFiles, "CPP", inputTypes));
+
+        JudgeToolController judgeTool = JudgeToolController.getJudgeToolController();
+        judgeTool.start();
+
+        judgeTool.ioPort.post(data);
 
         /*AssignmentManager<List<List<File[]>>> manager = new AssignmentManager<>();
 

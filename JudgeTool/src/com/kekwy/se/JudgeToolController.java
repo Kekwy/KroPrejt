@@ -6,7 +6,6 @@ import com.kekwy.se.data.IOPort;
 import com.kekwy.se.data.ProgramPairs;
 import com.kekwy.se.data.SourceCodeGroup;
 
-import java.io.File;
 import java.util.*;
 
 public class JudgeToolController {
@@ -27,8 +26,6 @@ public class JudgeToolController {
     private void send() {
         while (active) {
             DataStruct data = assignmentManager.waitForData();
-            // uuidDataStructMap.put(assignment.getUUID(), data);
-            // DataStruct dataStruct = new DataStruct();
             ioPort.send(data, null);
         }
     }
@@ -66,8 +63,7 @@ public class JudgeToolController {
     public void start() {
         new Thread(this::send).start();
         new Thread(this::receive).start();
+        new Thread(assignmentManager).start();
     }
-
-
 
 }

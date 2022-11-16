@@ -8,9 +8,21 @@ import java.util.regex.Pattern;
 public class SourceCodeGroup implements Loadable{
     private final List<File> fileList;
     private final String language;
-    private final List<InputType> inputTypes = new ArrayList<>();
+    private List<InputType> inputTypes = new ArrayList<>();
 
     private final static Pattern inputInfoPattern = Pattern.compile("");
+
+    /**
+     * Just for debug
+     * @param fileList
+     * @param language
+     * @param inputInfo
+     */
+    public SourceCodeGroup(List<File> fileList, String language, List<InputType> inputInfo){
+        this.fileList = fileList;
+        this.language = language;
+        this.inputTypes = inputInfo;
+    }
 
     public SourceCodeGroup(List<File> fileList, String language, File inputInfo){
         this.fileList = fileList;
