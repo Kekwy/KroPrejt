@@ -59,6 +59,10 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
     private List<File> exec(List<File> execFiles, File inputFile) throws IOException {
         List<File> outputFiles = new ArrayList<>();
         for (File execFile : execFiles) {
+            if (execFile == null) {
+                outputFiles.add(null);
+                continue;
+            }
             BufferedReader reader;
             try {
                 reader = new BufferedReader(new FileReader(inputFile));
@@ -121,9 +125,15 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
     private void removeTempFiles(File inputFile, List<File> execFiles, List<File> outputFiles) {
         inputFile.delete();
         for (File execFile : execFiles) {
+            if (execFile == null) {
+                continue;
+            }
             execFile.delete();
         }
         for (File outputFile : outputFiles) {
+            if (outputFile == null) {
+                continue;
+            }
             outputFile.delete();
         }
     }
@@ -133,8 +143,14 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
 
         for (int i = 0; i < codeFiles.size(); i++) {
             File output1 = outputFiles.get(i);
+            if (output1 == null) {
+                continue;
+            }
             for (int j = i + 1; j < codeFiles.size(); j++) {
                 File output2 = outputFiles.get(j);
+                if (output2 == null) {
+                    continue;
+                }
                 BufferedInputStream bfIs1;
                 BufferedInputStream bfIs2;
                 try {

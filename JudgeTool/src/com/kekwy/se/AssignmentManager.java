@@ -16,13 +16,14 @@ public class AssignmentManager<T> {
 
     public List<T> waitForData() {
         List<T> results = new LinkedList<>();
-        for (Assignment<T> assignment : assignmentList) {
-            try {
-                assignment.getThread().join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        while (!assignmentList.isEmpty()) {
+            ListIterator<Assignment<T>> listIterator = assignmentList.listIterator();
+            while (listIterator.hasNext()) {
+                Assignment<T> assignment = listIterator.next();
+                assignment.waitForFinished();
+                results.add(assignment.getResult());
+                listIterator.remove();
             }
-            results.add(assignment.getResult());
         }
         return results;
     }
@@ -30,7 +31,8 @@ public class AssignmentManager<T> {
     public void launch() {
         ExecutorService exec = Executors.newCachedThreadPool();
         for (Assignment<T> assignment : assignmentList) {
-            exec.execute(assignment);
+            assignment.setThread(new Thread(assignment));
+            exec.execute(assignment.getThread());
         }
         exec.shutdown();
     }

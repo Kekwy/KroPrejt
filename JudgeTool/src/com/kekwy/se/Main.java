@@ -10,11 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        if(args.length == 0) {
+        /*if(args.length == 0) {
             throw new RuntimeException("未提供文件路径");
-        }
+        }*/
 
-        File directory = new File(args[0]);
+        // File directory = new File(args[0]);
+        File directory = new File("/Users/kekwy/Downloads/input");
 
         IOController ioController = new IOController(directory);
 

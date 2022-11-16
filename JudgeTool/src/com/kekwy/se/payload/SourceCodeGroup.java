@@ -24,6 +24,7 @@ public class SourceCodeGroup {
      * @param inputInfoFile 保存待测程序输入信息的文件
      */
     public SourceCodeGroup(List<File> fileList, String language, File inputInfoFile) {
+
         this.fileList = fileList;
         this.language = language;
         String inputInfo;

@@ -2,6 +2,9 @@ package com.kekwy.se;
 
 import com.kekwy.se.assignment.Assignment;
 import com.kekwy.se.assignment.JudgeAssignment;
+import com.kekwy.se.compiler.CCompiler;
+import com.kekwy.se.compiler.CppCompiler;
+import com.kekwy.se.executor.CppExecutor;
 import com.kekwy.se.payload.ProgramPairs;
 import com.kekwy.se.payload.SourceCodeGroup;
 
@@ -10,6 +13,12 @@ import java.util.List;
 
 public class JudgeToolController {
 
+    static {
+        JudgeAssignment.addCompiler(new CCompiler(), "c");
+        JudgeAssignment.addExecutor(new CppExecutor(), "c");
+        JudgeAssignment.addCompiler(new CppCompiler(), "cpp");
+        JudgeAssignment.addExecutor(new CppExecutor(), "cpp");
+    }
     private final AssignmentManager<ProgramPairs> assignmentManager = new AssignmentManager<>();
 
     public void createAssignments(List<SourceCodeGroup> sourceCodeGroups) {
