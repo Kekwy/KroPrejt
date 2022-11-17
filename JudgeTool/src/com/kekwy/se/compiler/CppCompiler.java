@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class CppCompiler implements Compiler {
     private final static String OUTPUT_PATH = "./tmp/exec/cpp/";
     private final static File OUTPUT_DIRECTORY = new File(OUTPUT_PATH);
-    private final ProcessBuilder builder = new ProcessBuilder();
+    // private final
 
     static {
         if (!(OUTPUT_DIRECTORY.exists() && OUTPUT_DIRECTORY.isDirectory())) {        // 检查临时文件存放路径
@@ -24,18 +24,25 @@ public class CppCompiler implements Compiler {
         }
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     public List<File> compile(List<File> sourceCode) throws IOException {
+        ProcessBuilder builder = new ProcessBuilder();
         List<File> execFiles = new ArrayList<>();              // 可执行文件列表
         for (File file : sourceCode) {
             String sourceName = file.getName();                // 获取文件名，用于生成带有唯一前缀的输出文件名
-            String prefix = UUID.randomUUID().toString().trim().replaceAll("-", "");
-            String outFileName = prefix + sourceName.substring(0, sourceName.indexOf(".cpp"));
+            File dir = new File(OUTPUT_PATH +
+                    file.getParent().substring(file.getParent().lastIndexOf("/") + 1));
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            String outFileName = dir.getAbsolutePath() + "/" + sourceName.substring(0, sourceName.indexOf(".cpp"));
             builder.command(new LinkedList<>(){{
-                add("g++");
+                add("gcc-12");
                 add("-o");
-                add(OUTPUT_PATH + outFileName);
+                add(outFileName);
                 add(file.getAbsolutePath());
+                add("-lstdc++");
             }});   // 执行编译命令
             builder.inheritIO();
             Process process;
@@ -49,10 +56,8 @@ public class CppCompiler implements Compiler {
             if (isTimeout) {
                 process.destroy();
             }
-            File outFile = new File(OUTPUT_PATH + outFileName);
+            File outFile = new File(outFileName);
             if (!outFile.exists()) {                           // 检查文件是否成功生成
-                System.out.println(file.getAbsolutePath() + " 编译失败：");
-                // byte[] bytes = process.getInputStream().readAllBytes();
                 outFile = null;
             }
             execFiles.add(outFile);
