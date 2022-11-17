@@ -15,5 +15,5 @@ public interface Executor {
      * @return 生成的进程对象
      * @throws IOException IO异常
      */
-    Process exec(File execFile) throws IOException;
+    Process exec(File execFile, File inputFile, File outputFile) throws IOException;
 }

@@ -8,12 +8,12 @@ import java.io.IOException;
  */
 public class CppExecutor implements Executor {
 
-    private final ProcessBuilder builder = new ProcessBuilder();
     @Override
-    public Process exec(File execFile) throws IOException {
-        builder.command(execFile.getAbsolutePath());            // 设置运行指令
-        builder.redirectInput(ProcessBuilder.Redirect.PIPE);    // 重定向进程标准输入到管道
-        builder.redirectOutput(ProcessBuilder.Redirect.PIPE);   // 重定向进程标准输出到管道
+    public Process exec(File execFile, File inputFile, File outputFile) throws IOException {
+        ProcessBuilder builder = new ProcessBuilder();
+        builder.command(execFile.getAbsolutePath());       // 设置运行指令
+        builder.redirectInput(inputFile);                  // 重定向进程标准输入到文件
+        builder.redirectOutput(ProcessBuilder.Redirect.appendTo(outputFile)); // 重定向进程标准输出到文件
         return builder.start();         // 启动进程并返回进程对象
     }
 }
