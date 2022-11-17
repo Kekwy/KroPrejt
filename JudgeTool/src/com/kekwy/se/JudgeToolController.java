@@ -14,7 +14,7 @@ import java.util.List;
 public class JudgeToolController {
 
     static {
-        JudgeAssignment.addCompiler(new CCompiler(), "c");
+        JudgeAssignment.addCompiler(new CppCompiler(), "c");
         JudgeAssignment.addExecutor(new CppExecutor(), "c");
         JudgeAssignment.addCompiler(new CppCompiler(), "cpp");
         JudgeAssignment.addExecutor(new CppExecutor(), "cpp");

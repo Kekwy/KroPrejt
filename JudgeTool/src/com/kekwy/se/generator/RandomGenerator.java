@@ -10,7 +10,7 @@ import java.util.Random;
  * 基于随机生成方式的生成器
  */
 public class RandomGenerator implements Generator {
-    public static final int NUMBER_OF_SAMPLES = 20;
+    public static final int NUMBER_OF_SAMPLES = 100;
     public static final String OUTPUT_PATH = "./tmp/input/";
     private static final File OUTPUT_DIRECTORY = new File(OUTPUT_PATH);
     private final Random random = new Random();
