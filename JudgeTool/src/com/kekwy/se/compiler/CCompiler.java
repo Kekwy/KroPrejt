@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+@Deprecated
 public class CCompiler implements Compiler {
     private final static String OUTPUT_PATH = "./tmp/exec/c/";
     private final static File OUTPUT_DIRECTORY = new File(OUTPUT_PATH);

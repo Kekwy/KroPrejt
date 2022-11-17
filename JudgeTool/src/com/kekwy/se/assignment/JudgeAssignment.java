@@ -70,42 +70,51 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
                 throw new RuntimeException(e);
             }
             // 生成一个临时文件, 用于保存目标进程的输出
-            File tmp = File.createTempFile("judge",".tmp", new File("./tmp/output"));
-            BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(tmp));
+            String filePath = "./tmp/output/" + execFile.getParent().
+                    substring(execFile.getParent().lastIndexOf("/") + 1) + "/";
+            File dir = new File(filePath);
+            File tmp = new File(filePath + execFile.getName());
+            if (!dir.exists()) {
+                //noinspection ResultOfMethodCallIgnored
+                dir.mkdirs();
+            }
+            //noinspection ResultOfMethodCallIgnored
+            tmp.createNewFile();
+            // BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(tmp));
             String input = reader.readLine();              // 从数据集文件中读出一行
             for (; input != null; input = reader.readLine()) {
-                Process process = executor.exec(execFile); // 启动待测程序
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                if (!process.isAlive()) {
-                    continue;
-                }
-                BufferedOutputStream bfos = new BufferedOutputStream(process.getOutputStream());
-                bfos.write((input + "\n").getBytes());     // 向目标进程的输入测试用例
-                bfos.flush();
-                bfos.close();
+                File inputLine = File.createTempFile("sample_input",".tmp",
+                        new File("./tmp/input/"));
+                FileOutputStream fIs = new FileOutputStream(inputLine);
+                fIs.write(input.getBytes());               // 写入临时文件
+                fIs.flush();
+                fIs.close();
+                Process process = executor.exec(execFile, inputLine, tmp); // 启动待测程序，将进程标准输入重定向为上述临时文件
+//                try {
+//                    Thread.sleep(100);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                if (!process.isAlive()) {
+//                    continue;
+//                }
+//                process.getOutputStream().write((input + "\n").getBytes());     // 向目标进程的输入测试用例
+//                process.getOutputStream().flush();
                 boolean isTimeout;
                 try {                                      // 等待进程执行结束
-                    isTimeout = !(process.waitFor(2, TimeUnit.SECONDS));
+                    isTimeout = !(process.waitFor(5, TimeUnit.SECONDS));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
                 if (isTimeout) {
                     process.destroy();                     // 超时强制杀死进程
-                } else {
-                    // 获取目标进程标准输出的输入流
-                    BufferedInputStream stdout = new BufferedInputStream(process.getInputStream());
-                    output.write(stdout.readAllBytes());
-                    stdout.close();
                 }
+                inputLine.deleteOnExit();
             }
-            output.close();
             outputFiles.add(tmp);
             reader.close();
         }
+
         return outputFiles;
     }
 
@@ -119,7 +128,7 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
             List<File> execFiles = compiler.compile(codeFiles);    // 编译源代码
             List<File> outputFiles = exec(execFiles, inputFile);   // 执行程序，保存输出
             ProgramPairs result = compare(outputFiles);            // 对比输出结果，划分等价对
-            removeTempFiles(inputFile, execFiles, outputFiles);    // 删除测试过程中产生的临时文件
+            // removeTempFiles(inputFile, execFiles, outputFiles);    // 删除测试过程中产生的临时文件
             return result;                                         // 返回执行结果
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -151,12 +160,10 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
 
         for (int i = 0; i < codeFiles.size(); i++) {
             File output1 = outputFiles.get(i);
-            if (output1 == null) {
-                continue;
-            }
             for (int j = i + 1; j < codeFiles.size(); j++) {
                 File output2 = outputFiles.get(j);
-                if (output2 == null) {
+                if (output1 == null || output2 == null) {
+                    programPairs.addInequalPair(codeFiles.get(i), codeFiles.get(j));
                     continue;
                 }
                 BufferedInputStream bfIs1;
