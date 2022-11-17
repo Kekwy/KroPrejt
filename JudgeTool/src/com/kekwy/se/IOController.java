@@ -66,7 +66,7 @@ public class IOController {
     public void toCSVFiles(List<ProgramPairs> programPairsList) {
         File dir = new File("./output/");
         if (!dir.exists()) {
-            if(!dir.mkdirs()) {
+            if (!dir.mkdirs()) {
                 throw new RuntimeException("");
             }
         }
@@ -83,8 +83,8 @@ public class IOController {
             bfWt1.write("file1,file2\n");
             bfWt2.write("file1,file2\n");
             for (ProgramPairs programPairs : programPairsList) {
-                bfWt1.write(programPairs.getEqualPairsString());
-                bfWt2.write(programPairs.getInequalPairsString());
+                bfWt1.write(programPairs.getEqualPairsString(directory.getName() + "/"));
+                bfWt2.write(programPairs.getInequalPairsString(directory.getName() + "/"));
             }
             bfWt1.close();
             bfWt2.close();

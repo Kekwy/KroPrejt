@@ -9,29 +9,31 @@ import java.util.List;
  */
 public class ProgramPairs {
 
-    public String getEqualPairsString() {
-        return pairsToString(equalPairs);
+    public String getEqualPairsString(String prefix) {
+        return pairsToString(equalPairs, prefix);
     }
 
-    private String pairsToString(List<ProgramPair> pairList) {
+    private String pairsToString(List<ProgramPair> pairList, String prefix) {
         StringBuilder res = new StringBuilder();
         for (ProgramPair pair : pairList) {
-            String absolutePath1 = pair.file1.getParent().substring(
+            String path1 = pair.file1.getParent().substring(
                     pair.file1.getParent().lastIndexOf("/") + 1) +
                     "/" + pair.file1.getName();
-            String absolutePath2 = pair.file2.getParent().substring(
+            String path2 = pair.file2.getParent().substring(
                     pair.file2.getParent().lastIndexOf("/") + 1) +
                     "/" + pair.file2.getName();
-            res.append(absolutePath1).
+            res.append(prefix).
+                    append(path1).
                     append(",").
-                    append(absolutePath2).
+                    append(prefix).
+                    append(path2).
                     append("\n");
         }
         return res.toString();
     }
 
-    public String getInequalPairsString() {
-        return pairsToString(inequalPairs);
+    public String getInequalPairsString(String prefix) {
+        return pairsToString(inequalPairs, prefix);
     }
 
     private final List<ProgramPair> equalPairs = new ArrayList<>();

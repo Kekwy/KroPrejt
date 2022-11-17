@@ -2,7 +2,6 @@ package com.kekwy.se;
 
 import com.kekwy.se.assignment.Assignment;
 import com.kekwy.se.assignment.JudgeAssignment;
-import com.kekwy.se.compiler.CCompiler;
 import com.kekwy.se.compiler.CppCompiler;
 import com.kekwy.se.executor.CppExecutor;
 import com.kekwy.se.payload.ProgramPairs;

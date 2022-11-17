@@ -9,10 +9,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="fix: 修复输出显示bug">
+    <list default="true" id="ec37899d-1191-4176-975a-bc8ff92685fb" name="变更" comment="fix: 停用了已弃用的类 CCompiler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/IOController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/IOController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/JudgeToolController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/RandomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/generator/RandomGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/ProgramPairs.java" beforeDir="false" afterPath="$PROJECT_DIR$/JudgeTool/src/com/kekwy/se/payload/ProgramPairs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668688641880</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix: 停用了已弃用的类 CCompiler">
+      <created>1668689311164</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1668689311164</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -254,7 +263,8 @@
     <MESSAGE value="refactor: 调整项目结构，精简项目功能。" />
     <MESSAGE value="feat: 从指定目录中读取待测文件" />
     <MESSAGE value="fix: 修复输出显示bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 修复输出显示bug" />
+    <MESSAGE value="fix: 停用了已弃用的类 CCompiler" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 停用了已弃用的类 CCompiler" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
