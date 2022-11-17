@@ -29,7 +29,7 @@ public class Main {
 
         ioController.toCSVFiles(programPairsList);
 
-        System.out.println("对比结束，CSV文件生成于: " + directory.getAbsolutePath());
+        System.out.println("对比结束，CSV文件生成于: " + new File("./output").getAbsolutePath());
 
     }
 }
