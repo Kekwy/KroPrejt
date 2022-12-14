@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * 执行 C/Cpp 编程生成的可执行文件
  */
-public class CppExecutor implements Executor {
+public class CppExecutor extends Executor {
 
     @Override
     public Process exec(File execFile, File inputFile, File outputFile) throws IOException {

@@ -8,12 +8,12 @@ import java.io.IOException;
  * <p>
  * 输入可执行文件，根据其实现生成一个进程，并返回该进程对象
  */
-public interface Executor {
+public abstract class Executor {
     /**
      * 执行输入文件，并返回生成的进程对象
      * @param execFile 期望运行的可执行文件
      * @return 生成的进程对象
      * @throws IOException IO异常
      */
-    Process exec(File execFile, File inputFile, File outputFile) throws IOException;
+    public abstract Process exec(File execFile, File inputFile, File outputFile) throws IOException;
 }

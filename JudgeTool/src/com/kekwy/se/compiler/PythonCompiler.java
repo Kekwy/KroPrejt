@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Python 不需要编译器，此处仅为保证处理流程一致
  */
-public class PythonCompiler implements Compiler {
+public class PythonCompiler extends Compiler {
     /**
      * 不处理，直接返回
      */

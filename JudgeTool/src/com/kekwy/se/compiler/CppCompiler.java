@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 编译 C++ 源代码
  */
-public class CppCompiler implements Compiler {
+public class CppCompiler extends Compiler {
     private final static String OUTPUT_PATH = "./tmp/exec/cpp/";
     private final static File OUTPUT_DIRECTORY = new File(OUTPUT_PATH);
     // private final
@@ -30,7 +30,7 @@ public class CppCompiler implements Compiler {
         ProcessBuilder builder = new ProcessBuilder();
         List<File> execFiles = new ArrayList<>();              // 可执行文件列表
         for (File file : sourceCode) {
-            String sourceName = file.getName();                // 获取文件名，用于生成带有唯一前缀的输出文件名
+            String sourceName = file.getName();                // 获取文件名，用于生成对应的输出路径
             File dir = new File(OUTPUT_PATH +
                     file.getParent().substring(file.getParent().lastIndexOf("/") + 1));
             if (!dir.exists()) {

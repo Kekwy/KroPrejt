@@ -9,7 +9,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Deprecated
-public class CCompiler implements Compiler {
+public class CCompiler extends Compiler {
     private final static String OUTPUT_PATH = "./tmp/exec/c/";
     private final static File OUTPUT_DIRECTORY = new File(OUTPUT_PATH);
     private final ProcessBuilder builder = new ProcessBuilder();

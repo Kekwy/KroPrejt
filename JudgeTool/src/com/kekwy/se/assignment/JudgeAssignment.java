@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnable {
+public class JudgeAssignment extends Assignment<ProgramPairs> {
 
     private static final Map<String, Executor> ExecutorMap = new HashMap<>();
     private static final Map<String, Compiler> compilerMap = new HashMap<>();
@@ -82,9 +82,10 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
             tmp.createNewFile();
             // BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(tmp));
             String input = reader.readLine();              // 从数据集文件中读出一行
+            File inputLine = File.createTempFile("sample_input",".tmp",
+                    new File("./tmp/input/"));
+            inputLine.deleteOnExit();
             for (; input != null; input = reader.readLine()) {
-                File inputLine = File.createTempFile("sample_input",".tmp",
-                        new File("./tmp/input/"));
                 FileOutputStream fIs = new FileOutputStream(inputLine);
                 fIs.write(input.getBytes());               // 写入临时文件
                 fIs.flush();
@@ -98,7 +99,7 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
 //                if (!process.isAlive()) {
 //                    continue;
 //                }
-//                process.getOutputStream().write((input + "\n").getBytes());     // 向目标进程的输入测试用例
+//                process.getOutputStream().write((input + "\n").getBytes());
 //                process.getOutputStream().flush();
                 boolean isTimeout;
                 try {                                      // 等待进程执行结束
@@ -109,7 +110,6 @@ public class JudgeAssignment extends Assignment<ProgramPairs> implements Runnabl
                 if (isTimeout) {
                     process.destroy();                     // 超时强制杀死进程
                 }
-                inputLine.deleteOnExit();
             }
             outputFiles.add(tmp);
             reader.close();
